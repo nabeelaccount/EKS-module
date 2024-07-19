@@ -1,0 +1,1 @@
+# Simple servce using serivce type LoadBalancer

@@ -1,0 +1,28 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: myapp
+  namespace: 9-example
+  annotations:
+    # must specify cluster-issuer name
+    cert-manager.io/cluster-issuer: http-01-production
+spec:
+  ingressClassName: external-nginx
+  rules:
+    - host: ex9.almahrizi.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: myapp
+                port:
+                  number: 8080
+  # tls section for securing domain
+  tls:
+    - hosts:
+        - ex9.almahrizi.net
+      # Secret key will be automatically generated. Terminating TLS at ingress pod
+      secretName: ex9-almahrizi-net

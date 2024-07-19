@@ -1,0 +1,24 @@
+---
+# Supported annotations
+# https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.7/guide/service/annotations/
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp
+  namespace: lb-ingress-testing
+  # Annotations used by AWS Loadbalance controller
+  annotations:
+    # specifying external, outside the EKS cluster, loadbalancer to be created in AWS 
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    # create a NLB and route using EKS services IP instead of node nodePorts
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    # create an internet facing (public accessible) alb
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+    # service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: "*"
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: http
+  selector:
+    app: myapp

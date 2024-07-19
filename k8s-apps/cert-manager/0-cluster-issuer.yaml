@@ -1,0 +1,18 @@
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: http-01-production
+spec:
+  acme:
+    # email to be notified in case of error/failure
+    email: your-email@hotmail.com
+    # use letsencrypt as cert issuer
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: http-01-production-cluster-issuer
+    solvers:
+      # use http01 to challenge and validate users's ownership of domain
+      - http01:
+          ingress:
+            ingressClassName: external-nginx

@@ -1,0 +1,3 @@
+---
+# Kubectl has an in-built admin clusterole called cluster-admin
+# We can use this clsuterrole rather than create a new one
