@@ -6,16 +6,16 @@ variable "name" {
 
 variable "region" {
   description = "AWS region"
-  default = "us-east-1"
+  default = "eu-west-2"
   type = string
 }
 
 variable "zone1" {
-  default = "us-east-1a"
+  default = "eu-west-2a"
 }
 
 variable "zone2" {
-  default = "us-east-1b"
+  default = "eu-west-2b"
 }
 
 variable "env" {
